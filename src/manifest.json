@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "Thunderplates",
+  "version": "1.0",
+  "description": "Create and insert email templates in Thunderbird compose window.",
+  "applications": {
+    "gecko": {
+      "id": "thunderplates@example.com",
+      "strict_min_version": "139.0"
+    }
+  },
+  "permissions": [
+    "compose",
+    "storage",
+    "tabs"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "compose_action": {
+    "default_title": "Insert template",
+    "default_popup": "popup.html"
+  }
+}
