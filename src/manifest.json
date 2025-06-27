@@ -12,7 +12,8 @@
   "permissions": [
     "compose",
     "storage",
-    "tabs"
+    "tabs",
+    "menus"
   ],
   "background": {
     "scripts": ["background.js"]
