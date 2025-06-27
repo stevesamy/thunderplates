@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Thunderplates Options</title>
+  <style>
+    body { font-family: sans-serif; padding: 1em; }
+    label { display: block; margin-top: 0.5em; }
+    textarea { width: 100%; height: 100px; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 0.5em 0; }
+    button.delete { margin-left: 0.5em; }
+  </style>
+</head>
+<body>
+  <h1>Templates</h1>
+  <form id="addForm">
+    <label>Template Name:<br/><input type="text" id="name" required/></label>
+    <label>Subject:<br/><input type="text" id="subject" required/></label>
+    <label>Message:<br/><textarea id="body" required></textarea></label>
+    <button type="submit">Add Template</button>
+  </form>
+
+  <h2>Existing Templates</h2>
+  <ul id="templateList"></ul>
+
+  <script src="options.js"></script>
+</body>
+</html>
