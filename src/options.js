@@ -4,15 +4,6 @@ async function loadTemplates() {
   list.textContent = '';
   for (const [index, t] of templates.entries()) {
     const li = document.createElement('li');
-    li.textContent = t.subject ? `${t.name} - ${t.subject}` : t.name;
-    const del = document.createElement('button');
-    del.textContent = 'Delete';
-    del.className = 'delete';
-    del.addEventListener('click', async () => {
-      templates.splice(index, 1);
-      await browser.storage.local.set({ templates });
-      loadTemplates();
-    });
     const edit = document.createElement('button');
     edit.textContent = 'Edit';
     edit.className = 'edit';
@@ -23,8 +14,19 @@ async function loadTemplates() {
       document.getElementById('editIndex').value = index;
       document.getElementById('saveBtn').textContent = 'Update Template';
     });
+    const del = document.createElement('button');
+    del.textContent = 'Delete';
+    del.className = 'delete';
+    del.addEventListener('click', async () => {
+      templates.splice(index, 1);
+      await browser.storage.local.set({ templates });
+      loadTemplates();
+    });
+    const label = document.createElement('span');
+    label.textContent = t.subject ? `${t.name} - ${t.subject}` : t.name;
     li.appendChild(edit);
     li.appendChild(del);
+    li.appendChild(label);
     list.appendChild(li);
   }
 }
