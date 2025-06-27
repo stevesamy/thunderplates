@@ -54,10 +54,18 @@ loadTemplates();
 
 async function parseQuicktext(xml) {
   const doc = new DOMParser().parseFromString(xml, 'application/xml');
+  const escape = (text) => {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  };
+  const toHtml = (text) => escape(text).replace(/(?:\r\n|\r|\n)/g, '<br>');
+
   return Array.from(doc.querySelectorAll('text')).map((node) => {
     const name = node.querySelector('name')?.textContent.trim() || 'Untitled';
     const subject = node.querySelector('subject')?.textContent.trim() || '';
-    const body = node.querySelector('body')?.textContent || '';
+    const bodyText = node.querySelector('body')?.textContent || '';
+    const body = toHtml(bodyText);
     return { name, subject, body };
   });
 }
