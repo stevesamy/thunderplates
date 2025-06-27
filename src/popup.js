@@ -14,7 +14,7 @@ async function loadTemplates() {
       if (tab) {
         await browser.compose.setComposeDetails(tab.id, {
           subject: t.subject,
-          plainTextBody: t.body
+          body: t.body
         });
       }
       window.close();
