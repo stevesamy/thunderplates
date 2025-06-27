@@ -51,3 +51,26 @@ document.getElementById('templateForm').addEventListener('submit', async (e) => 
 });
 
 loadTemplates();
+
+async function parseQuicktext(xml) {
+  const doc = new DOMParser().parseFromString(xml, 'application/xml');
+  return Array.from(doc.querySelectorAll('text')).map((node) => {
+    const name = node.querySelector('name')?.textContent.trim() || 'Untitled';
+    const subject = node.querySelector('subject')?.textContent.trim() || '';
+    const body = node.querySelector('body')?.textContent || '';
+    return { name, subject, body };
+  });
+}
+
+document.getElementById('importBtn').addEventListener('click', async () => {
+  const file = document.getElementById('quicktextFile').files[0];
+  if (!file) return;
+  const xml = await file.text();
+  const imported = await parseQuicktext(xml);
+  if (imported.length === 0) return;
+  const data = await browser.storage.local.get({ templates: [] });
+  data.templates.push(...imported);
+  await browser.storage.local.set(data);
+  document.getElementById('quicktextFile').value = '';
+  loadTemplates();
+});
