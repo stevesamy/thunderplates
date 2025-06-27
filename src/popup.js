@@ -12,7 +12,7 @@ async function loadTemplates() {
     btn.addEventListener('click', async () => {
       const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
       if (tab) {
-        const details = { plainTextBody: t.body };
+        const details = { body: t.body };
         if (t.subject) {
           details.subject = t.subject;
         }
