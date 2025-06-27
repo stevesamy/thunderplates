@@ -19,7 +19,7 @@ async function loadTemplates() {
     edit.addEventListener('click', () => {
       document.getElementById('name').value = t.name;
       document.getElementById('subject').value = t.subject;
-      document.getElementById('body').value = t.body;
+      document.getElementById('body').innerHTML = t.body;
       document.getElementById('editIndex').value = index;
       document.getElementById('saveBtn').textContent = 'Update Template';
     });
@@ -33,8 +33,8 @@ document.getElementById('templateForm').addEventListener('submit', async (e) => 
   e.preventDefault();
   const name = document.getElementById('name').value.trim();
   const subject = document.getElementById('subject').value.trim();
-  const body = document.getElementById('body').value;
-  if (!name || !body) return;
+  const body = document.getElementById('body').innerHTML;
+  if (!name || !body.trim()) return;
   const data = await browser.storage.local.get({ templates: [] });
   const editIndex = document.getElementById('editIndex').value;
   if (editIndex === '') {
@@ -44,6 +44,7 @@ document.getElementById('templateForm').addEventListener('submit', async (e) => 
   }
   await browser.storage.local.set(data);
   e.target.reset();
+  document.getElementById('body').innerHTML = '';
   document.getElementById('editIndex').value = '';
   document.getElementById('saveBtn').textContent = 'Add Template';
   loadTemplates();
