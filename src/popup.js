@@ -12,11 +12,17 @@ async function loadTemplates() {
     btn.addEventListener('click', async () => {
       const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
       if (tab) {
-        const details = { body: t.body };
+        const details = {};
         if (t.subject) {
           details.subject = t.subject;
         }
-        await browser.compose.setComposeDetails(tab.id, details);
+        if (Object.keys(details).length > 0) {
+          await browser.compose.setComposeDetails(tab.id, details);
+        }
+        await browser.tabs.sendMessage(tab.id, {
+          command: 'insertTemplate',
+          html: t.body,
+        });
       }
       window.close();
     });
