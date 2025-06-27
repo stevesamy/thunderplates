@@ -9,12 +9,11 @@
       "strict_min_version": "139.0"
     }
   },
-    "permissions": [
-      "compose",
-      "storage",
-      "tabs",
-      "menus"
-    ],
+  "permissions": [
+    "compose",
+    "storage",
+    "tabs"
+  ],
   "background": {
     "scripts": ["background.js"]
   },
