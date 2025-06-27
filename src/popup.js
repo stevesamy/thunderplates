@@ -12,10 +12,11 @@ async function loadTemplates() {
     btn.addEventListener('click', async () => {
       const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
       if (tab) {
-        await browser.compose.setComposeDetails(tab.id, {
-          subject: t.subject,
-          plainTextBody: t.body
-        });
+        const details = { plainTextBody: t.body };
+        if (t.subject) {
+          details.subject = t.subject;
+        }
+        await browser.compose.setComposeDetails(tab.id, details);
       }
       window.close();
     });

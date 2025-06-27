@@ -4,7 +4,7 @@ async function loadTemplates() {
   list.textContent = '';
   for (const [index, t] of templates.entries()) {
     const li = document.createElement('li');
-    li.textContent = `${t.name} - ${t.subject}`;
+    li.textContent = t.subject ? `${t.name} - ${t.subject}` : t.name;
     const del = document.createElement('button');
     del.textContent = 'Delete';
     del.className = 'delete';
@@ -23,7 +23,7 @@ document.getElementById('addForm').addEventListener('submit', async (e) => {
   const name = document.getElementById('name').value.trim();
   const subject = document.getElementById('subject').value.trim();
   const body = document.getElementById('body').value;
-  if (!name || !subject || !body) return;
+  if (!name || !body) return;
   const data = await browser.storage.local.get({ templates: [] });
   data.templates.push({ name, subject, body });
   await browser.storage.local.set(data);
