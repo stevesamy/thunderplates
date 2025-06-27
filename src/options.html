@@ -14,11 +14,12 @@
 </head>
 <body>
   <h1>Templates</h1>
-  <form id="addForm">
+  <form id="templateForm">
+    <input type="hidden" id="editIndex" value="" />
     <label>Template Name:<br/><input type="text" id="name" required/></label>
     <label>Subject:<br/><input type="text" id="subject" required/></label>
     <label>Message:<br/><textarea id="body" required></textarea></label>
-    <button type="submit">Add Template</button>
+    <button type="submit" id="saveBtn">Add Template</button>
   </form>
 
   <h2>Existing Templates</h2>
