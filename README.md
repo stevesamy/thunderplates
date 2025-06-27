@@ -7,6 +7,7 @@ Thunderplates is a simple Thunderbird add-on for composing emails from reusable 
 - Define email templates in the add-on's settings page. Each template includes a name and HTML body text, with an optional subject. The body is edited using a simple WYSIWYG editor.
 - Insert a template from the compose window using the "Insert template" button.
 - Selecting a template replaces the message body and, if provided, the subject of the current draft.
+- Import templates from a Quicktext XML file on the options page.
 
 ## Installation
 
